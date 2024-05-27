@@ -1,0 +1,36 @@
+import dearpygui.dearpygui as dpg
+dpg.create_context()
+def sistemadeconversao():
+    opcao = dpg.get_value ("opcao")
+    moeda = dpg.get_value ("moeda")
+    try:
+        opcao = int(opcao)
+        moeda = float(moeda)    # Converte os valores inseridos nos campos de entrada para int e float
+        if opcao == 1:
+            resultado = moeda / 5.17    # Calcula a conversão de Real para Dólar
+            dpg.set_value("resultado",f"O valor da Conversão é:${resultado:,.2f}")   # Atualiza o texto do widget de resultado com o valor calculado formatado
+        elif opcao == 2:
+            resultado = 5.17 * moeda   # Calcula a conversão de Dólar para Real
+            dpg.set_value("resultado",f"O valor da Conversão é:${resultado:,.2f}")   # Atualiza o texto do widget de resultado com o valor calculado formatado
+        else:  
+            dpg.set_value("resultado","Por favor, insira valores numéricos válidos")   # Caso a opção não seja 1 ou 2, exibe uma mensagem de erro
+
+    except ValueError:
+        dpg.set_value("resultado","Por favor, insira valores numéricos válidos")    # Se ocorrer um erro de conversão, exibe uma mensagem de erro
+
+dpg.create_viewport(title='Sistema', width=700, height=300)
+
+with dpg.window(label="Sistema de Conversão", width=700, height=300):
+    dpg.add_text("Qual a opção vc quer \nReal/Dolar Digite = 1 \nDolar/Real Digite = 2: ")
+    dpg.add_input_text(label="Opção", tag="opcao")
+    dpg.add_input_text(label="Real/Dolar", tag="moeda")
+    dpg.add_button(label="Calcular", callback=sistemadeconversao)
+    dpg.add_text("", tag="resultado")
+
+
+dpg.setup_dearpygui()
+dpg.show_viewport()
+dpg.start_dearpygui()
+dpg.destroy_context()
+
+    
