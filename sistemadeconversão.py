@@ -22,7 +22,7 @@ def sistemadeconversao():
             dpg.set_value("resultado",f"O valor da Conversão é:${resultado:,.2f} euros")
         elif opcao == 4:
             resultado = moeda * 5.33
-            dpg.set_value("resultado",f"O valor da Conversão é:${resultado:,.2f} reais")
+            dpg.set_value("resultado",f"O valor da Conversão é:${resultado:,.2f} reais")  
 
         elif opcao == 5:
             resultado =  0.92 * moeda
@@ -46,7 +46,7 @@ with dpg.window(label="Sistema de Conversão", width=700, height=300):
     dpg.add_input_text(label="Moeda", tag="moeda")
     dpg.add_button(label="Calcular", callback=sistemadeconversao)
     dpg.add_text("", tag="resultado")
-    dpg.add_button(label="Exit", callback=sair)
+    dpg.add_button(label="Sair", callback=sair)
 
 
 dpg.setup_dearpygui()
